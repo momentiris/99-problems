@@ -1,4 +1,4 @@
-import { last, butLast, at } from '.'
+import { last, butLast, at, length } from '.'
 
 describe('01 - Find the last element of a list.', () => {
   it('works', () => {
@@ -30,5 +30,14 @@ describe('03 - Find the K:th element of a list.', () => {
     const result = cases.flatMap(([xs, k]) => at(xs, k))
 
     expect(result).toEqual([undefined, undefined, 0, 2])
+  })
+})
+
+describe.only('04 - Find the number of elements of a list.', () => {
+  it('works', () => {
+    const cases: Array<Array<number>> = [[], [0], [0, 1], [0, 1, 2]]
+
+    const assert = (xs: Array<number>) => expect(length(xs)).toEqual(xs.length)
+    cases.forEach(assert)
   })
 })
