@@ -22,7 +22,7 @@ export function at<T>([x, ...xs]: Array<T>, k: number): T | undefined {
 }
 
 // 04 - Find the number of elements of a list.
-// doesn't take undefinedel elements into account
+// doesn't take undefined elements into account
 export function length<T>(xs: Array<T>): number {
   function l<T>([x, ...xs]: Array<T>, n: number): number {
     if(x === undefined) return n
