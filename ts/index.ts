@@ -19,12 +19,7 @@ export function at<T>([x, ...xs]: Array<T>, k: number): T | undefined {
 }
 
 export function length<T>(xs: Array<T>): number {
-  function l<T>([x, ...xs]: Array<T>, n: number): number {
-    if (x === undefined) return n
-    return l(xs, n + 1)
-  }
-
-  return l(xs, 0)
+  return xs.reduce((acc) => acc + 1, 0)
 }
 
 export function reverse<T>(xs: Array<T>): Array<T> {

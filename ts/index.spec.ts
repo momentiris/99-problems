@@ -35,9 +35,15 @@ describe('03 - Find the K:th element of a list.', () => {
 
 describe('04 - Find the number of elements of a list.', () => {
   it('works', () => {
-    const cases: Array<Array<number>> = [[], [0], [0, 1], [0, 1, 2]]
+    const cases: Array<Array<number | undefined>> = [
+      [],
+      [undefined],
+      [0],
+      [0, 1, 2],
+    ]
 
-    const assert = (xs: Array<number>) => expect(length(xs)).toEqual(xs.length)
+    const assert = (xs: Array<number | undefined>) =>
+      expect(length(xs)).toEqual(xs.length)
     cases.forEach(assert)
   })
 })
