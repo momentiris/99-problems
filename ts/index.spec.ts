@@ -1,4 +1,4 @@
-import { last, butLast, at, length, reverse} from '.'
+import { last, butLast, at, length, reverse, isPalindrome } from '.'
 
 describe('01 - Find the last element of a list.', () => {
   it('works', () => {
@@ -42,15 +42,20 @@ describe('04 - Find the number of elements of a list.', () => {
   })
 })
 
-describe.only('05 - Reverse a list.', () => {
+describe('05 - Reverse a list.', () => {
   it('works', () => {
     const cases: Array<Array<number>> = [[], [0], [0, 1], [0, 1, 2]]
-    
-    const assert = (xs: Array<number>) => expect(reverse(xs)).toEqual(xs.reverse())
+
+    const assert = (xs: Array<number>) =>
+      expect(reverse(xs)).toEqual(xs.reverse())
     cases.forEach(assert)
   })
 })
 
-
-
-
+describe('06 - Find out whether a list is a palindrome.', () => {
+  it('works', () => {
+    const cases = [[0, 1, 2], 'sirapiparis', [0, 1, 0]]
+    const result = cases.map((c) => isPalindrome(c))
+    expect(result).toEqual([false, true, true])
+  })
+})
