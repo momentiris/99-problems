@@ -31,3 +31,13 @@ export function length<T>(xs: Array<T>): number {
 
  return l(xs, 0)
 }
+
+// 05 - Reverse a list.
+export function reverse<T>(xs: Array<T>): Array<T> {
+  function r<T>([x, ...xs]: Array<T>, acc: Array<T>): Array<T> {
+    if(x === undefined) return acc 
+    return r(xs, [x, ...acc])
+  } 
+
+  return r(xs, []) 
+}

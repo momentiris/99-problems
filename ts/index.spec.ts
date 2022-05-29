@@ -1,4 +1,4 @@
-import { last, butLast, at, length } from '.'
+import { last, butLast, at, length, reverse} from '.'
 
 describe('01 - Find the last element of a list.', () => {
   it('works', () => {
@@ -33,7 +33,7 @@ describe('03 - Find the K:th element of a list.', () => {
   })
 })
 
-describe.only('04 - Find the number of elements of a list.', () => {
+describe('04 - Find the number of elements of a list.', () => {
   it('works', () => {
     const cases: Array<Array<number>> = [[], [0], [0, 1], [0, 1, 2]]
 
@@ -41,3 +41,16 @@ describe.only('04 - Find the number of elements of a list.', () => {
     cases.forEach(assert)
   })
 })
+
+describe.only('05 - Reverse a list.', () => {
+  it('works', () => {
+    const cases: Array<Array<number>> = [[], [0], [0, 1], [0, 1, 2]]
+    
+    const assert = (xs: Array<number>) => expect(reverse(xs)).toEqual(xs.reverse())
+    cases.forEach(assert)
+  })
+})
+
+
+
+
