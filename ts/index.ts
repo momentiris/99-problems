@@ -45,5 +45,8 @@ export function flatten<T>(xs: Array<T>): Array<T> {
 }
 
 export function compress<T extends string>(xs: Array<T>): Array<T> {
-  return xs.filter((x, idx, xs) => idx === 0 || x !== xs[idx - 1]);
+  const isConsecutiveDuplicate = <T>(x: T, idx: number, xs: Array<T>) =>
+    idx === 0 || x !== xs[idx - 1];
+
+  return xs.filter(isConsecutiveDuplicate);
 }
