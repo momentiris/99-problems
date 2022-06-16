@@ -62,4 +62,26 @@ defmodule App do
   def at([_ | tail], k) when k > 1, do: at(tail, k - 1)
   def at([x | _tail], k) when k == 1, do: x
   def at([], _k), do: nil
+
+  @doc """
+  Find the number of elements of a list. 
+
+  ## Examples
+
+      iex> App.length([])
+      0
+
+      iex> App.length([0])
+      1
+
+      iex> App.length([0,1,2])
+      3
+
+  """
+
+  def length([]), do: 0
+  def length([], l), do: l
+  def length([_head | tail], l), do: length(tail, l + 1)
+  def length([_head | tail]), do: length(tail, 1)
+  
 end
