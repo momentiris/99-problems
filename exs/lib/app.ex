@@ -83,5 +83,31 @@ defmodule App do
   def length([], l), do: l
   def length([_head | tail], l), do: length(tail, l + 1)
   def length([_head | tail]), do: length(tail, 1)
+
+
+  @doc """
+  Reverse a list. 
+
+  ## Examples
+
+      iex> App.reverse([])
+      []
+
+      iex> App.reverse([0])
+      [0]
+
+      iex> App.reverse([0, 1, 2])
+      [2, 1, 0]
+
+      iex> App.reverse(['a', 'b', 'c'])
+      ['c', 'b', 'a']
+
+  """
+
+  def reverse([]), do: []
+  def reverse([], acc), do: acc  
+
+  def reverse([head | tail]), do: reverse([head | tail], [])
+  def reverse([head | tail], acc), do: reverse(tail, [head | acc])
   
 end

@@ -26,4 +26,11 @@ defmodule AppTest do
     assert App.length([0]) == 1
     assert App.length([0, 1, 2]) == 3
   end
+
+  test "05 - Reverse a list." do
+    assert App.reverse([]) == []
+    assert App.reverse([0]) == [0]
+    assert App.reverse([0, 1, 2]) == [2, 1, 0]
+    assert App.reverse(['a', 'b', 'c']) == ['c', 'b', 'a']
+  end
 end
