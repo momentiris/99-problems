@@ -109,5 +109,23 @@ defmodule App do
 
   def reverse([head | tail]), do: reverse([head | tail], [])
   def reverse([head | tail], acc), do: reverse(tail, [head | acc])
-  
-end
+
+  @doc """
+  06 - Find out whether a list is a palindrome. 
+
+  ## Examples
+
+      iex> App.isPalindrome([1, 2, 3])
+      false
+
+      iex> App.isPalindrome("madamimadam")
+      true
+
+      iex> App.isPalindrome([1, 2, 4, 8, 16, 8, 4, 2, 1])
+      true
+
+  """
+
+  def isPalindrome(xs) when is_list(xs), do: Enum.join(xs, "") == Enum.join(reverse(xs), "")
+  def isPalindrome(str), do: str == reverse(String.split(str)) |> Enum.join
+  end
