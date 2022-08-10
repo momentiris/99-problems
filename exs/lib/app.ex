@@ -128,4 +128,26 @@ defmodule App do
 
   def isPalindrome(xs) when is_list(xs), do: Enum.join(xs, "") == Enum.join(reverse(xs), "")
   def isPalindrome(str), do: str == reverse(String.split(str)) |> Enum.join
-  end
+
+
+  @doc """
+  07 - Flatten a nested list structure. 
+
+  ## Examples
+
+      iex> App.flatten([])
+      []
+
+      iex> App.flatten([1])
+      [1]
+
+      iex> App.flatten([1, [2, [3, [4]]]])
+      [1, 2, 3, 4]
+
+  """
+
+  def flatten([]), do: [] 
+  def flatten([head | tail]), do: flatten(head) ++ flatten(tail)
+  def flatten(head), do: [head]
+
+end
