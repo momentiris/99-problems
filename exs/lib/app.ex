@@ -187,8 +187,8 @@ defmodule App do
 
   def pack(xs), do: pack([], xs) |> Enum.reverse()
 
-  def pack([[head | _tail] = current | restAcc], [head | tail]),
-    do: pack([[head | current] | restAcc], tail)
+  def pack([[head | _tail] = current | rest_acc], [head | tail]),
+    do: pack([[head | current] | rest_acc], tail)
 
   def pack(accumulator, [head | tail]), do: pack([[head] | accumulator], tail)
   def pack(acc, []), do: acc
