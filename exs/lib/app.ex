@@ -80,9 +80,9 @@ defmodule App do
   """
 
   def length([]), do: 0
+  def length([_head | tail]), do: length(tail, 1)
   def length([], l), do: l
   def length([_head | tail], l), do: length(tail, l + 1)
-  def length([_head | tail]), do: length(tail, 1)
 
   @doc """
   Reverse a list. 
@@ -104,9 +104,9 @@ defmodule App do
   """
 
   def reverse([]), do: []
-  def reverse([], acc), do: acc
-
   def reverse([head | tail]), do: reverse([head | tail], [])
+
+  def reverse([], acc), do: acc
   def reverse([head | tail], acc), do: reverse(tail, [head | acc])
 
   @doc """
@@ -171,6 +171,25 @@ defmodule App do
 
   def compress([], accumulator), do: accumulator
   def compress([head | tail], [head | _rest] = acc), do: compress(tail, acc)
+
   def compress([head | tail], []), do: compress(tail, [head])
   def compress([head | tail], accumulator), do: compress(tail, [head | accumulator])
+
+  @doc """
+  09 - Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
+
+  ## Examples
+
+      iex> App.pack([0, 0, 0, 0, 1, 2, 2, 3, 3])
+      [[0, 0, 0, 0], [1], [2, 2], [3, 3]]
+
+  """
+
+  def pack(xs), do: pack([], xs) |> Enum.reverse()
+
+  def pack([[head | _tail] = current | restAcc], [head | tail]),
+    do: pack([[head | current] | restAcc], tail)
+
+  def pack(accumulator, [head | tail]), do: pack([[head] | accumulator], tail)
+  def pack(acc, []), do: acc
 end
