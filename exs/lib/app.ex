@@ -84,7 +84,6 @@ defmodule App do
   def length([_head | tail], l), do: length(tail, l + 1)
   def length([_head | tail]), do: length(tail, 1)
 
-
   @doc """
   Reverse a list. 
 
@@ -105,7 +104,7 @@ defmodule App do
   """
 
   def reverse([]), do: []
-  def reverse([], acc), do: acc  
+  def reverse([], acc), do: acc
 
   def reverse([head | tail]), do: reverse([head | tail], [])
   def reverse([head | tail], acc), do: reverse(tail, [head | acc])
@@ -127,8 +126,7 @@ defmodule App do
   """
 
   def isPalindrome(xs) when is_list(xs), do: Enum.join(xs, "") == Enum.join(reverse(xs), "")
-  def isPalindrome(str), do: str == reverse(String.split(str)) |> Enum.join
-
+  def isPalindrome(str), do: str == reverse(String.split(str)) |> Enum.join()
 
   @doc """
   07 - Flatten a nested list structure. 
@@ -146,8 +144,33 @@ defmodule App do
 
   """
 
-  def flatten([]), do: [] 
+  def flatten([]), do: []
   def flatten([head | tail]), do: flatten(head) ++ flatten(tail)
   def flatten(head), do: [head]
 
+  @doc """
+  08 - Eliminate consecutive duplicates of list elements.
+
+  ## Examples
+
+      iex> App.compress("abcabc")
+      "abcabc"
+
+      iex> App.compress("aaabbbaaabbcccc")
+      "ababc"
+
+  """
+
+  def compress(str) when is_binary(str),
+    do:
+      str
+      |> String.split("", trim: true)
+      |> compress([])
+      |> Enum.reverse()
+      |> Enum.join("")
+
+  def compress([], accumulator), do: accumulator
+  def compress([head | tail], [head | _rest] = acc), do: compress(tail, acc)
+  def compress([head | tail], []), do: compress(tail, [head])
+  def compress([head | tail], accumulator), do: compress(tail, [head | accumulator])
 end
