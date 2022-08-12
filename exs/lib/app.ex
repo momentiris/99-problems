@@ -192,4 +192,21 @@ defmodule App do
 
   def pack(accumulator, [head | tail]), do: pack([[head] | accumulator], tail)
   def pack(acc, []), do: acc
+
+  @doc """
+  10 - Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
+
+  ## Examples
+
+      iex> App.encode([0, 0, 0, 0, 1, 2, 2, 3, 3, 0])
+      [[4, 0], [1, 1], [2, 2], [2, 3], [1, 0]]
+
+  """
+  def encode([[_head | _tail] | _rest] = xs), do: encode([], xs)
+  def encode(xs), do: encode(xs |> pack) |> Enum.reverse()
+
+  def encode(acc, [head | tail]),
+    do: encode([[head |> Enum.count(), Enum.at(head, 0)] | acc], tail)
+
+  def encode(acc, []), do: acc
 end
