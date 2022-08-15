@@ -194,9 +194,9 @@ defmodule App do
   def pack(acc, []), do: acc
 
   @doc """
-  10 - Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
+  10 - run-length encoding of a list. use the result of problem p09 to implement the so-called run-length encoding data compression method. consecutive duplicates of elements are encoded as lists (n e) where n is the number of duplicates of the element e.
 
-  ## Examples
+  ## examples
 
       iex> App.encode([0, 0, 0, 0, 1, 2, 2, 3, 3, 0])
       [[4, 0], [1, 1], [2, 2], [2, 3], [1, 0]]
@@ -209,4 +209,25 @@ defmodule App do
     do: encode([[head |> Enum.count(), Enum.at(head, 0)] | acc], tail)
 
   def encode(acc, []), do: acc
+
+  @doc """
+  11 - Modify the result of problem 10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N E) lists.
+
+  ## examples
+
+      iex> App.encode_modified([0, 0, 0, 0, 1, 2, 2, 3, 3, 0])
+      [[4, 0], 1, [2, 2], [2, 3], 0]
+
+  """
+
+  def encode_modified([[_head | _tail] | _rest] = xs), do: encode_modified([], xs)
+  def encode_modified(xs), do: encode_modified(xs |> pack) |> Enum.reverse()
+
+  def encode_modified(acc, [[head] | tail]),
+    do: encode_modified([head | acc], tail)
+
+  def encode_modified(acc, [head | tail]),
+    do: encode_modified([[head |> Enum.count(), Enum.at(head, 0)] | acc], tail)
+
+  def encode_modified(acc, []), do: acc
 end
